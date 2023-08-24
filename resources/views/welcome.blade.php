@@ -2,10 +2,12 @@
 @section('content')
 
  <div class="container">
- <div class="alert alert-primary" role="alert">
+ @if (session()->has('mssg'))
+ <div class="alert alert-info" role="alert">
  <p class="mssg">{{ session('mssg') }}</p>
+ <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 </div>
- 
+@endif
 
   <table class="table">
     <thead>
@@ -52,15 +54,15 @@
         @csrf 
         <div class="form-group mt-2">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" class="form-control">
+        <input type="text" id="name" name="name" class="form-control" required>
         </div>
         <div class="form-group mt-2">
         <label for="description">Description:</label>
-        <textarea id="description" name="description" cols="40" rows="5" class="form-control"></textarea>
+        <textarea id="description" name="description" cols="40" rows="5" class="form-control" required></textarea>
         </div>
         <div class="form-group mt-2">
         <label for="category">Category</label>
-        <select name="category" id="category" class="form-control">
+        <select name="category" id="category" class="form-control" required>
             <option value="1">Women</option>
             <option value="2">Man</option>
             <option value="3">Child</option>
