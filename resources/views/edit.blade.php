@@ -5,7 +5,7 @@
 <div class="container">
  <div class="alert alert-primary alert-dismissible fade show" role="alert">
  <p class="mssg">{{ session('mssg') }}</p>
- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
 </div>
 </div>
 @endif
