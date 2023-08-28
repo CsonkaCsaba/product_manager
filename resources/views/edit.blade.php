@@ -2,12 +2,14 @@
 @section('content')
 
 @if (session()->has('mssg'))
- <div class="alert alert-primary" role="alert">
+<div class="container">
+ <div class="alert alert-primary alert-dismissible fade show" role="alert">
  <p class="mssg">{{ session('mssg') }}</p>
- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 </div>
 @endif
-
+<div class="container">
 
 <h1>Update product</h1>
 
