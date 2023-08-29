@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<<<<<<< HEAD
 @if (session()->has('mssg'))
 <div class="container">
  <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -13,16 +12,6 @@
 
 <div class="container">
 
-=======
- <div class="container">
- @if (session()->has('mssg'))
- <div class="alert alert-info" role="alert">
- <p class="mssg">{{ session('mssg') }}</p>
- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-</div>
-@endif
-
->>>>>>> 555f229791d4095346676c79c52ff2f90b15d635
   <table class="table">
     <thead>
       <tr>
