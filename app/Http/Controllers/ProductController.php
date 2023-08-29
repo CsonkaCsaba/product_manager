@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categories;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class ProductController extends Controller
 {
@@ -22,12 +24,23 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(){
-        
+    public function store(Request $request){
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $path = $request->file('photo')->store('public/img');
+        $url = Storage::url($path);
+
         $product = new Product();
         $product->name = request('name'); 
         $product->description = request('description');
         $product->categories_id = request('category');
+        $product->photo = $url;
         $product->save(); 
 
         return redirect('/')->with('mssg','Product has been saved!'); 

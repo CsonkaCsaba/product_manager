@@ -50,7 +50,7 @@
 @if (Auth::user())
 <div class="container">
     <h1>Create a New Product</h1>
-    <form action="/" method="POST">
+    <form action="/" method="POST" enctype="multipart/form-data">
         @csrf 
         <div class="form-group mt-2">
         <label for="name">Name:</label>
@@ -67,6 +67,19 @@
             <option value="2">Man</option>
             <option value="3">Child</option>
         </select>
+        </div>
+        <div class="form-group mt-2">
+        <input type="file" class="form-control" name="photo">
+            
+        @if ($errors->any())
+        <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        </div>
+        @endif
         </div>
         <div class="form-group mt-2">
         <input type="submit" value="Create" class="btn btn-primary mt-4 mb-4">
