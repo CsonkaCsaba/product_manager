@@ -57,17 +57,6 @@
         @csrf 
         <div class="form-group mt-2">
         <label for="name">Name:</label>
-<<<<<<< HEAD
-        <input type="text" id="name" name="name" class="form-control">
-        </div>
-        <div class="form-group mt-2">
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" cols="40" rows="5" class="form-control"></textarea>
-        </div>
-        <div class="form-group mt-2">
-        <label for="category">Category</label>
-        <select name="category" id="category" class="form-control">
-=======
         <input type="text" id="name" name="name" class="form-control" required>
         </div>
         <div class="form-group mt-2">
@@ -77,7 +66,6 @@
         <div class="form-group mt-2">
         <label for="category">Category</label>
         <select name="category" id="category" class="form-control" required>
->>>>>>> 555f229791d4095346676c79c52ff2f90b15d635
             <option value="1">Women</option>
             <option value="2">Man</option>
             <option value="3">Child</option>
