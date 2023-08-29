@@ -65,10 +65,21 @@ class ProductController extends Controller
 
     public function update (Request $req){
 
+        $req->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'categories_id' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $path = $req->file('photo')->store('public/img');
+        $url = Storage::url($path);
+
         $data=Product::find($req->id);
         $data->name = $req->name;
         $data->description = $req->description;
         $data->categories_id = $req->categories_id;
+        $data->photo = $url;
         $data->save();
 
         return redirect('/')->with('mssg','Product has been updated!');
