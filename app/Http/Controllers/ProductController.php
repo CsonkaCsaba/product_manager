@@ -24,14 +24,25 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-
+    public function valid(Request $request)
+    {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
             'category' => 'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        $valid = true;
+        return $valid;
+        
+    }
+
+    public function store(Request $request){
+
+       $check = $this->valid($request);
+
+       if($check){
 
         $path = $request->file('photo')->store('public/img');
         $url = Storage::url($path);
@@ -44,6 +55,10 @@ class ProductController extends Controller
         $product->save(); 
 
         return redirect('/')->with('mssg','Product has been saved!'); 
+        }
+        else{
+            echo 'nem megfelelő adatok';
+        }
     }
 
     public function destroy($id){
@@ -57,32 +72,30 @@ class ProductController extends Controller
     public function showData($id) {
 
         $data = Product::findOrFail($id);
-        $selectedCat = Product::first()->role_id;
+        
 
         return view('edit', ['data' => $data]);
         
     }
 
-    public function update (Request $req){
+    public function update (Request $request){
 
-        $req->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'categories_id' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+        $check = $this->valid($request);
 
-        $path = $req->file('photo')->store('public/img');
+       if($check){
+
+        $path = $request->file('photo')->store('public/img');
         $url = Storage::url($path);
 
-        $data=Product::find($req->id);
-        $data->name = $req->name;
-        $data->description = $req->description;
-        $data->categories_id = $req->categories_id;
+        $data=Product::find($request->id);
+        $data->name = $request->name;
+        $data->description = $request->description;
+        $data->categories_id = $request->category;
         $data->photo = $url;
         $data->save();
 
         return redirect('/')->with('mssg','Product has been updated!');
+       }
 
     }
 

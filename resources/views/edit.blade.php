@@ -25,8 +25,8 @@
         <textarea id="description" name="description" cols="40" rows="5" class="form-control" required>{{ $data->description}}</textarea>
         </div>
         <div class="form-group mt-2">
-        <label for="categories_id">Category</label>
-        <select name="categories_id" id="categories_id" class="form-control" selected="{{ $data->categories_id}}" required>
+        <label for="category">Category</label>
+        <select name="category" id="category" class="form-control" selected="{{ $data->categories_id}}" required>
             <option value="1">Women</option>
             <option value="2">Man</option>
             <option value="3">Child</option>
